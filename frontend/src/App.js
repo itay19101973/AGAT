@@ -10,7 +10,6 @@ function App() {
       axios.get("users/")
         .then((response) => {
           setMessage(response.data.respond);
-          console.log(response.data);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
