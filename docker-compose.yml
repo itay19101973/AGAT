@@ -25,5 +25,16 @@ services:
     depends_on:
       - db
 
+  frontend:
+    container_name: agat_frontend
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
 volumes:
   postgres_data:
