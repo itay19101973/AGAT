@@ -5,7 +5,6 @@ function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-      console.log("useEffect running");
 
       axios.get("users/")
         .then((response) => {
