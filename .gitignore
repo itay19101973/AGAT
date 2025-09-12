@@ -39,3 +39,21 @@ Thumbs.db
 .coverage
 htmlcov/
 .pytest_cache/
+
+# === Frontend / Node.js ===
+# ignore node_modules inside frontend
+/frontend/node_modules/
+
+# ignore build folder inside frontend
+/frontend/build/
+
+# ignore npm debug logs
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+
+# ignore environment files inside frontend
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
