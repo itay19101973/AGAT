@@ -5,17 +5,17 @@ from pydantic import ValidationError
 from ..repository.ai_integration import send_question
 from flask import Blueprint, request, jsonify
 from ..schemes.ai_schemes import AiQuestion
-from ..service.ai import send_question_to_model
+from ..service.MyProxy import send_public_msg_to_gpt
 
-ai_bp = Blueprint('ai', __name__, url_prefix="/ai")
+MyProxy_bp = Blueprint('MyProxy', __name__, url_prefix="/MyProxy")
 
 
-@ai_bp.route('/question', methods=['POST'])
-def handle_ai_question():
+@MyProxy_bp.route('/', methods=['POST'])
+def answer_public_prompt():
     try:
 
         ai_question = AiQuestion(**request.json)
-        response = send_question_to_model(ai_question)
+        response = send_public_msg_to_gpt(ai_question)
         return jsonify({"response": response})
 
     except ValidationError as e:
@@ -25,3 +25,4 @@ def handle_ai_question():
     except Exception as e:
         print(e)
         return jsonify({"error": str(e)}), http.HTTPStatus.INTERNAL_SERVER_ERROR
+

@@ -1,7 +1,9 @@
 from flask import Flask
 from .config import SQL_ALCHEMY_DB_CONNECTION_URL, BACKEND_SERVER_PORT
 from .routes.ai import ai_bp
+from .routes.MyProxy import MyProxy_bp
 from .database import get_db_connection
+
 
 
 def setup_app():
@@ -16,6 +18,7 @@ def setup_app():
 
     # routes
     app.register_blueprint(ai_bp)
+    app.register_blueprint(MyProxy_bp)
 
     return app
 

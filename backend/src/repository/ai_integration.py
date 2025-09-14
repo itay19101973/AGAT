@@ -8,11 +8,42 @@ url = "https://BGD15-PragatixAPI.agatdemo.com/firewallApi/v1/chat"
 
 
 def send_question(data: AiQuestion):
+    if data.PrivateDataID is None:
+        payload = {
+            "APIKey": API_KEY,
+            "Prompt": data.Prompt,
+            "DataSource": data.DataSource
+
+        }
+        headers = {
+            "Content-Type": "application/json"
+        }
+    else:
+        payload = {
+            "APIKey": API_KEY,
+            "Prompt": data.Prompt,
+            "DataSource": data.DataSource,
+            "PrivateDataSource": "Content",
+            "PrivateDataID": data.PrivateDataID
+        }
+        headers = {
+            "Content-Type": "application/json"
+        }
+    print(payload)
+
+    response = requests.post(url, json=payload, headers=headers)
+
+    if response.status_code != http.HTTPStatus.OK:
+        raise ValueError(f"API error {response.status_code}: {response.text}")
+    data = response.json()
+    return data["Response"]
+
+
+def gpt_general_question(data: AiQuestion):
     payload = {
         "APIKey": API_KEY,
         "Prompt": data.Prompt,
-        "DataSource": data.DataSource
-
+        "DataSource": data.DataSource,
     }
     headers = {
         "Content-Type": "application/json"
