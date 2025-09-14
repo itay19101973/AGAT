@@ -5,6 +5,7 @@ POSTGRES_PORT = os.getenv("PGPORT", 5432)
 POSTGRES_DB = os.getenv("POSTGRES_DB", "AGAT")
 POSTGRES_USER = os.getenv("POSTGRES_USER", "e_commerce_manager")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", 123)
+API_KEY=os.getenv("API_KEY")
 
 
 # General
